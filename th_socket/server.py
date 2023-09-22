@@ -24,8 +24,16 @@ while True:
     print('收到来自 %s 的连接' % str(addr))
 
     c.send('欢迎连接'.encode('utf-8'))
-    message = c.recv(1024).decode('utf-8')
-    print('收到消息：', message)
+    
+    while True:
+        message = c.recv(1024).decode('utf-8')
+        if message.lower() == 'exit':
+            print('客户端请求断开连接。')
+            c.send('连接已断开'.encode('utf-8'))
+            break
+        print('收到消息：', message)
+        response = input('请输入回复：')
+        c.send(response.encode('utf-8'))
 
     # 关闭连接
     c.close()
