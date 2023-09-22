@@ -3,7 +3,11 @@ import threading
 
 def receive_messages(s):
     while True:
-        print('收到回复：', s.recv(1024).decode('utf-8'))
+        try:
+            print('收到回复：', s.recv(1024).decode('utf-8'))
+        except ConnectionResetError:
+            print("服务器断开连接")
+            break
 
 # 创建 socket 对象
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,8 +28,10 @@ recv_thread.start()
 
 while True:
     message = input('请输入消息：')
-    s.send(message.encode('utf-8'))
-    if message.lower() == 'exit':
+    try:
+        s.send(message.encode('utf-8'))
+    except BrokenPipeError:
+        print("无法发送消息，服务器已断开连接")
         break
 
 # 关闭连接
