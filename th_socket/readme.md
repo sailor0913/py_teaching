@@ -14,3 +14,18 @@
 </details>
 
 </details>
+
+<details>
+
+<summary>第二版</summary>
+
+- 同步发送消息，必须等待双方都发送后才能相互接收到消息
+</details>
+
+<details>
+
+<summary>第三版</summary>
+
+- 异步发送消息，客户端可以向服务端发送消息，但是服务端无法向客户端发送消息
+</details>
+

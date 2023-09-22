@@ -1,6 +1,18 @@
 import socket
+import threading
 
-# 创建一个 socket 对象
+def handle_client(c):
+    while True:
+        message = c.recv(1024).decode('utf-8')
+        if message.lower() == 'exit':
+            print('客户端请求断开连接。')
+            c.send('连接已断开'.encode('utf-8'))
+            break
+        print('收到消息：', message)
+        
+    c.close()
+
+# 创建 socket 对象
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # 获取本地主机名
@@ -25,15 +37,5 @@ while True:
 
     c.send('欢迎连接'.encode('utf-8'))
     
-    while True:
-        message = c.recv(1024).decode('utf-8')
-        if message.lower() == 'exit':
-            print('客户端请求断开连接。')
-            c.send('连接已断开'.encode('utf-8'))
-            break
-        print('收到消息：', message)
-        response = input('请输入回复：')
-        c.send(response.encode('utf-8'))
-
-    # 关闭连接
-    c.close()
+    client_thread = threading.Thread(target=handle_client, args=(c,))
+    client_thread.start()
