@@ -15,8 +15,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("砸金蛋游戏")
 
 # 加载和缩放图片
-egg_image = pygame.transform.scale(pygame.image.load("黑蛋完整.png"), (250, 375))
-broken_egg_image = pygame.transform.scale(pygame.image.load("黑蛋破裂.png"), (250, 375))
+egg_image = pygame.transform.scale(pygame.image.load("金蛋完整.png"), (250, 375))
+broken_egg_image = pygame.transform.scale(pygame.image.load("金蛋破裂.png"), (250, 375))
 jumper_image = pygame.transform.scale(pygame.image.load("拿剑小人.png"), (180, 180))
 
 
@@ -41,9 +41,8 @@ class Egg(pygame.sprite.Sprite):
 
 def reset_game(eggs, egg_positions):
     eggs.empty()
-    # activities = ["下去玩", "打游戏", "吃好吃的", "看动画片"]
-    # activities = ["吃好吃的", "吃好吃的", "吃好吃的", "吃好吃的"]
-    activities = ["跳绳200", "英语一篇", "4页数学无错", "拼音2页"]
+    activities = ["下去玩", "打游戏", "吃好吃的", "看动画片"]
+    # activities = ["跳绳200", "英语一篇", "4页数学无错", "拼音2页"]
     random.shuffle(activities) # 随机排序活动
     for i, (pos, activity) in enumerate(zip(egg_positions, activities)):
         egg = Egg(i+1, pos[0], pos[1], activity)

@@ -26,4 +26,11 @@ pip install pygame
 - 结束后，空格继续游戏
 </details>
 
+<summary>第二版</summary>
+
+- 小人砸金蛋（二）
+- 回车开始游戏
+- 结束后，回车继续游戏
+</details>
+
 
