@@ -17,5 +17,13 @@ pip install pygame
 - 使用pygame初始化一个窗口，有大小、名称以及可以点击X关闭
 </details>
 
+<details>
+
+<summary>第二版</summary>
+
+- 小人砸金蛋（一）
+- 空格开始游戏
+- 结束后，空格继续游戏
+</details>
 
 
